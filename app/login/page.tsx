@@ -1,41 +1,12 @@
-import React from 'react'
+import LoginForm from "@/components/LoginForm";
 
-const page : React.FC = () => {
+
+const Page: React.FC = () => {
   return (
+    <div className="min-h-screen flex justify-center text-center items-center w-full">
+      <LoginForm/>
+    </div>
+  );
+};
 
-
-<form > 
-
-<h2>Login</h2>
-<div>
-<label htmlFor="email">Email</label>
-<input type="text"
-id= "email"
-/>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-</form>
-
-
-
-
-
-  )
-}
-
-export default page
+export default Page;

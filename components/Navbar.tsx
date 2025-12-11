@@ -2,7 +2,15 @@ import React from 'react'
 
 const Navbar:React.FC = () => {
   return (
-    <div>Navbar</div>
+    <nav className="w-full ">
+      <div>
+<h1>Real Estate</h1>
+        
+        
+
+</div>
+
+    </nav>
   )
 }
 
