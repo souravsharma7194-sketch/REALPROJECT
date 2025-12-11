@@ -37,11 +37,6 @@ const SignupForm: React.FC = () => {
     }
 
     router.push("/login");
-
-
-
-
-    
   };
 
   return (
@@ -73,7 +68,9 @@ const SignupForm: React.FC = () => {
 
       {/* DOB */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-600">Date of Birth</label>
+        <label className="text-sm font-medium text-gray-600">
+          Date of Birth
+        </label>
 
         <div className="grid grid-cols-3 gap-2">
           {/* Day */}
@@ -98,8 +95,18 @@ const SignupForm: React.FC = () => {
           >
             <option value="">Month</option>
             {[
-              "Jan","Feb","Mar","Apr","May","Jun",
-              "Jul","Aug","Sep","Oct","Nov","Dec",
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec",
             ].map((m) => (
               <option key={m} value={m}>
                 {m}
