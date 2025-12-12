@@ -2,7 +2,7 @@ import React from 'react'
 
 const Page:React.FC = () => {
   return (
-    <div>Search Properties</div>
+    <div>CONTACT ME</div>
   )
 }
 
