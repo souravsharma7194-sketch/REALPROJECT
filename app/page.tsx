@@ -1,141 +1,141 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Home, Building2, Mountain, LandPlot } from "lucide-react";
-
+import { Link } from "lucide-react";
 export default function HomePage() {
   return (
-    <div className="w-full">
+      <div className="relative w-full overflow-hidden">
+
+      {/* -------------------------------------- */}
+      {/* GLOBAL BACKGROUND VIDEO */}
+      {/* -------------------------------------- */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10"
+      >
+        <source
+          src="https://videos.pexels.com/video-files/7578554/7578554-hd_1920_1080_30fps.mp4"
+          type="video/mp4"
+        />
+      </video>
 
       {/* -------------------------------------- */}
       {/* HERO SECTION */}
       {/* -------------------------------------- */}
+      <section className="relative h-[80vh] flex flex-col justify-center items-center text-center px-4 sm:px-6">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg">
+          Find Your Dream Home
+        </h1>
 
-      <section className="relative h-[80vh] w-full">
-        <Image
-          src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914"
-          alt="banner"
-          fill
-          className="object-cover brightness-75"
-        />
+        <p className="text-base sm:text-lg md:text-xl text-gray-200 mt-3 max-w-2xl">
+          Explore the best properties across India with trusted real estate listings.
+        </p>
 
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
-          <h1 className="text-4xl sm:text-6xl font-bold text-white drop-shadow-lg">
-            Find Your Dream Home
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-200 mt-3 max-w-2xl">
-            Explore the best properties across India with trusted real estate listings.
-          </p>
+        <div className="mt-8 flex flex-col sm:flex-row gap-4">
+          <Button className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">Buy</Button>
+          <Button className="bg-green-600 hover:bg-green-700 w-full sm:w-auto">Rent</Button>
+        </div>
+      </section>
 
-          <div className="mt-8 flex gap-4">
-            <Button className="bg-blue-600 hover:bg-blue-700">Buy</Button>
-            <Button className="bg-green-600 hover:bg-green-700">Rent</Button>
+      {/* SOFT TRANSITION GRADIENT */}
+      <div className="h-32 bg-gradient-to-b from-transparent to-black/40" />
+
+      {/* -------------------------------------- */}
+      {/* SERVICES + REVIEWS SECTION */}
+      {/* -------------------------------------- */}
+      <section className="relative py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto w-full grid gap-8 md:grid-cols-2">
+
+          {/* SERVICES CARD */}
+          <div className="bg-white/85 sm:bg-white/90 backdrop-blur rounded-2xl p-6 sm:p-8 shadow-lg sm:shadow-xl">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">
+              Our Services
+            </h2>
+            <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-700">
+              <li>✅ Verified property listings</li>
+              <li>✅ Zero brokerage on select homes</li>
+              <li>✅ Buy, Sell & Rent properties</li>
+              <li>✅ Legal & documentation support</li>
+              <li>✅ Trusted agents & builders</li>
+            </ul>
+            <Button className="mt-6 bg-black hover:bg-gray-800 w-full sm:w-auto">Explore Services</Button>
           </div>
-        </div>
-      </section>
 
-      {/* -------------------------------------- */}
-      {/* CATEGORIES SECTION */}
-      {/* -------------------------------------- */}
-
-      <section className="max-w-6xl mx-auto py-16 px-4">
-        <h2 className="text-3xl font-bold mb-8">Explore Categories</h2>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-          <CategoryCard icon={<Home />} label="Houses" />
-          <CategoryCard icon={<Building2 />} label="Apartments" />
-          <CategoryCard icon={<Mountain />} label="Villas" />
-          <CategoryCard icon={<LandPlot />} label="Plots" />
-        </div>
-      </section>
-
-      {/* -------------------------------------- */}
-      {/* FEATURED PROPERTIES */}
-      {/* -------------------------------------- */}
-
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Featured Properties</h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Array(6)
-              .fill(0)
-              .map((_, i) => (
-                <PropertyCard key={i} />
-              ))}
+          {/* REVIEWS CARD */}
+          <div className="bg-white/90 backdrop-blur rounded-2xl p-6 sm:p-8 shadow-lg sm:shadow-xl">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">
+              What Our Users Say
+            </h2>
+            <div className="space-y-6">
+              <div>
+                <p className="text-gray-700 italic">
+                  “Found my dream home in just 10 days. The listings were genuine and the process was smooth.”
+                </p>
+                <p className="mt-2 font-semibold text-gray-900">— Rahul Sharma, Mumbai</p>
+              </div>
+              <div>
+                <p className="text-gray-700 italic">
+                  “No brokerage and full transparency. Highly recommended for first-time buyers.”
+                </p>
+                <p className="mt-2 font-semibold text-gray-900">— Anjali Verma, Bengaluru</p>
+              </div>
+            </div>
+            <Button variant="outline" className="mt-6 w-full sm:w-auto">Leave a Review</Button>
           </div>
+
         </div>
       </section>
 
       {/* -------------------------------------- */}
-      {/* FOOTER */}
+      {/* WHY CHOOSE US + CTA SECTION */}
       {/* -------------------------------------- */}
+      <section className="relative py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto w-full grid gap-10 md:grid-cols-2">
 
-      <footer className="bg-gray-900 text-gray-300 py-10 mt-10">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between">
-          <div>
-            <h3 className="text-xl font-bold text-white">Real Estate</h3>
-            <p className="mt-2 text-sm max-w-sm">
-              Making property search easy, fast & reliable.
+          {/* TRUST STATS */}
+          <div className="bg-white/90 backdrop-blur rounded-2xl p-6 sm:p-10 shadow-lg sm:shadow-xl">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Why Choose Us</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
+              <div>
+                <p className="text-3xl sm:text-4xl font-bold text-green-700">10+</p>
+                <p className="text-gray-700 mt-1">Years Experience</p>
+              </div>
+              <div>
+                <p className="text-3xl sm:text-4xl font-bold text-green-700">25K+</p>
+                <p className="text-gray-700 mt-1">Happy Customers</p>
+              </div>
+              <div>
+                <p className="text-3xl sm:text-4xl font-bold text-green-700">50+</p>
+                <p className="text-gray-700 mt-1">Cities Covered</p>
+              </div>
+              <div>
+                <p className="text-3xl sm:text-4xl font-bold text-green-700">100%</p>
+                <p className="text-gray-700 mt-1">Verified Listings</p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA CARD */}
+          <div className="bg-black/80 backdrop-blur rounded-2xl p-6 sm:p-10 shadow-lg sm:shadow-xl text-white flex flex-col justify-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Ready to Find Your Perfect Home?</h2>
+            <p className="text-gray-300 mb-6 max-w-md">
+              Join thousands of buyers and renters who trust us to find verified, transparent, and affordable properties across India.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="bg-green-600 hover:bg-green-700 w-full sm:w-auto">Explore Properties</Button>
+              <Button variant="outline" className="border-white text-black hover:bg-white hover:text-black w-full sm:w-auto">
+                Get Started
+              </Button>
+            </div>
           </div>
 
-          <div className="flex gap-8 mt-6 sm:mt-0">
-            <Link href="/about" className="hover:text-white">
-              About
-            </Link>
-            <Link href="/contact" className="hover:text-white">
-              Contact
-            </Link>
-            <Link href="/privacy" className="hover:text-white">
-              Privacy
-            </Link>
-          </div>
         </div>
-      </footer>
+      </section>
+
     </div>
-  );
+  )
 }
-
-/* -------------------------------------- */
-/* CATEGORY CARD COMPONENT */
-/* -------------------------------------- */
-
-const CategoryCard = ({ icon, label }: any) => (
-  <Card className="h-32 flex flex-col justify-center items-center hover:shadow-lg transition cursor-pointer">
-    <CardContent className="flex flex-col justify-center items-center">
-      <span className="text-3xl mb-2">{icon}</span>
-      <p className="font-medium">{label}</p>
-    </CardContent>
-  </Card>
-);
-
-/* -------------------------------------- */
-/* PROPERTY CARD COMPONENT */
-/* -------------------------------------- */
-
-const PropertyCard = () => (
-  <Card className="overflow-hidden hover:shadow-xl transition cursor-pointer">
-    <Image
-      src="https://images.unsplash.com/photo-1613977257363-707ba9348227"
-      alt="property"
-      width={400}
-      height={300}
-      className="w-full h-56 object-cover"
-    />
-
-    <CardContent className="p-4">
-      <h3 className="font-bold text-lg">Luxury Family House</h3>
-      <p className="text-gray-600 text-sm mt-1">Mumbai, India</p>
-      <p className="font-semibold text-green-700 mt-3 text-lg">₹1.2 Cr</p>
-
-      <Button asChild className="w-full mt-4 bg-black hover:bg-gray-800">
-        <Link href="/property/1">View Details</Link>
-      </Button>
-    </CardContent>
-  </Card>
-);
-

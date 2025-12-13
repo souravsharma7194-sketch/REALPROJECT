@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,11 +10,30 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "@/firebase/firebaseConfig";
 
 
 
 const Navbar: React.FC = () => {
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.push("/");
+  };
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -24,8 +43,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-
-   <nav className="w-full bg-white shadow-md sticky top-0 z-50">
+    <nav className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6">
         <div className="flex justify-between items-center h-14">
 
@@ -38,8 +56,6 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-6 items-center">
-
-            {/* Normal Links */}
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -50,8 +66,7 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
 
-            {/* 🔥 Added Shadcn Dropdown (Desktop Only) */}
-            <DropdownMenu>
+            <DropdownMenu modal = {false}>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="text-gray-700">
                   More
@@ -62,25 +77,34 @@ const Navbar: React.FC = () => {
                 <DropdownMenuItem>
                   <Link href="/terms">Terms & Conditions</Link>
                 </DropdownMenuItem>
-
                 <DropdownMenuItem>
                   <Link href="/privacy">Privacy Policy</Link>
                 </DropdownMenuItem>
-
                 <DropdownMenuItem>
                   <Link href="/help">Help Center</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Buttons */}
-            <Button asChild size="sm" variant="outline">
-              <Link href="/login">Login</Link>
-            </Button>
-
-            <Button asChild size="sm" variant="default">
-              <Link href="/signup">Sign up</Link>
-            </Button>
+            {!user ? (
+              <>
+                <Button asChild size="sm" variant="outline">
+                  <Link href="/login">Login</Link>
+                </Button>
+                <Button asChild size="sm" variant="default">
+                  <Link href="/signup">Sign up</Link>
+                </Button>
+              </>
+            ) : (
+              <>
+                <span className="text-gray-700 font-medium">
+                  {user.email?.split("@")[0]}
+                </span>
+                <Button size="sm" variant="destructive" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -89,10 +113,11 @@ const Navbar: React.FC = () => {
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
+
         </div>
       </div>
 
-      {/* Mobile Menu (UNCHANGED) */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-3">
           <div className="flex flex-col space-y-2">
@@ -108,26 +133,42 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile Buttons */}
           <div className="pt-2 border-t border-gray-200 flex space-x-2">
-            <Button asChild size="sm" variant="outline">
-              <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                Login
-              </Link>
-            </Button>
-
-            <Button asChild size="sm" variant="default">
-              <Link href="/signup" onClick={() => setIsMenuOpen(false)}>
-                Sign up
-              </Link>
-            </Button>
+            {!user ? (
+              <>
+                <Button asChild size="sm" variant="outline">
+                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                    Login
+                  </Link>
+                </Button>
+                <Button asChild size="sm" variant="default">
+                  <Link href="/signup" onClick={() => setIsMenuOpen(false)}>
+                    Sign up
+                  </Link>
+                </Button>
+              </>
+            ) : (
+              <>
+                <span className="text-gray-700 font-medium self-center">
+                  {user.email?.split("@")[0]}
+                </span>
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Logout
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}
     </nav>
-
-
-
+  
 
 );
 };
@@ -140,8 +181,8 @@ export default Navbar;
 
 
 
-
-    /*
+{/* 
+   
     <nav className="w-full bg-white shadow-md sticky top-0 z-0 ">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6 ">
         <div className="flex justify-between items-center h-14">
@@ -220,6 +261,6 @@ export default Navbar;
           </div>
         </div>
       )}
-    </nav> */
+    </nav> 
 
-  
+   */}
