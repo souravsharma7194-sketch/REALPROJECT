@@ -1,70 +1,28 @@
-"use client";
+import { PropertyData } from "@/app/explore/page";
 
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-
-/* 🔹 Property Type (MATCHES data.ts) */
-export interface Property {
-  id: number;
-  title: string;
-  location: string;
-  price: string;               // ✅ string (₹2.5 Cr, ₹50,000 / month)
-  status: "sale" | "rent";     // ✅ status instead of type
-  imageUrl: string;
+interface Props {
+  property: PropertyData;
 }
 
-/* 🔹 Props Type */
-interface PropertyCardProps {
-  property: Property;
-}
-
-const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
+const PropertyCard: React.FC<Props> = ({ property }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition cursor-pointer">
-      
-      {/* IMAGE */}
-      <div className="relative w-full h-56 sm:h-64">
-        <Image
-          src={property.imageUrl}
-          alt={property.title}
-          fill
-          className="object-cover"
-        />
-      </div>
+    <div className="bg-white rounded-xl shadow p-4 hover:shadow-lg transition duration-200">
+      <img
+        src={property.imageUrl}
+        alt={property.title}
+        className="w-full h-48 object-cover rounded"
+      />
 
-      {/* CONTENT */}
-      <div className="p-4">
-        <h3 className="text-lg sm:text-xl font-bold">
-          {property.title}
-        </h3>
-
-        <p className="text-gray-600 text-sm mt-1">
-          {property.location}
-        </p>
-
-        <p className="font-semibold text-green-700 mt-2 text-lg">
-          {property.price}
-        </p>
-
-        {/* BADGE */}
-        <span
-          className={`inline-block mt-2 text-xs px-3 py-1 rounded-full ${
-            property.status === "rent"
-              ? "bg-blue-100 text-blue-700"
-              : "bg-green-100 text-green-700"
-          }`}
-        >
-          {property.status === "rent" ? "For Rent" : "For Sale"}
+      <h2 className="text-xl font-bold mt-2">{property.title}</h2>
+      <p className="text-gray-600">{property.location}</p>
+      <p className="font-semibold mt-1">{property.price}</p>
+      <p className="mt-1">
+        <span className="font-medium">Status:</span>{" "}
+        <span className={property.status === "sale" ? "text-green-600" : "text-blue-600"}>
+          {property.status.toUpperCase()}
         </span>
-
-        <Button asChild className="w-full mt-4 bg-black hover:bg-gray-800">
-          <Link href={`/property/${property.id}`}>
-            View Details
-          </Link>
-        </Button>
-      </div>
+      </p>
+      <p className="mt-2 text-gray-700 text-sm">{property.description}</p>
     </div>
   );
 };

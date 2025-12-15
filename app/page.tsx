@@ -2,17 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "lucide-react";
-import { useEffect } from "react";
 
 export default function HomePage() {
   
-  useEffect(() => {
-    console.log("🔥 CLIENT JS IS RUNNING");
-    console.log(
-      "🔥 Firebase Project ID:",
-      process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    );
-  }, []);
 
 
   return (
@@ -151,3 +143,6 @@ export default function HomePage() {
     </div>
   )
 }
+
+
+

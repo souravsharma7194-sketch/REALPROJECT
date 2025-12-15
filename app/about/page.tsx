@@ -1,33 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const page:React.FC  = () => {
+const AboutPage: React.FC = () => {
   return (
-    <div className=''>page
-    <div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div className="min-h-screen p-6">
+      <h1 className="text-3xl font-bold">About Page</h1>
+      <p className="mt-4 text-gray-700">
+        This is the about page.
+      </p>
     </div>
-</div>
-  )
-}
+  );
+};
 
-export default page
+export default AboutPage;
