@@ -63,9 +63,7 @@ const LoginForm: React.FC = () => {
 
         {/* Email */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="text-sm font-medium text-gray-700">
-            Email Address
-          </label>
+          
           <input
             type="email"
             id="email"
@@ -82,14 +80,13 @@ const LoginForm: React.FC = () => {
               outline-none
               transition
             "
+            placeholder="Email"
           />
         </div>
 
         {/* Password */}
         <div className="flex flex-col gap-1">
-          <label htmlFor="password" className="text-sm font-medium text-gray-700">
-            Password
-          </label>
+          
 
           <input
             type="password"
@@ -107,6 +104,7 @@ const LoginForm: React.FC = () => {
               outline-none
               transition
             "
+            placeholder="Password"
           />
         </div>
 

@@ -50,9 +50,9 @@ const SignupForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg space-y-5"
+      className="w-full max-w-sm mx-auto p-5 bg-white rounded-xl shadow-lg space-y-5"
     >
-      <h2 className="text-3xl font-semibold text-center text-green-600">
+      <h2 className="text-2xl font-semibold text-center text-green-600">
         Create Account
       </h2>
 
@@ -61,7 +61,7 @@ const SignupForm: React.FC = () => {
         placeholder="First Name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
-        className="border rounded-lg px-4 py-2.5 text-sm w-full focus:ring-2 focus:ring-green-500"
+        className="h-12 border rounded-lg px-4 text-sm w-full focus:ring-2 focus:ring-green-500"
       />
 
       <input
@@ -69,7 +69,7 @@ const SignupForm: React.FC = () => {
         placeholder="Surname"
         value={surname}
         onChange={(e) => setSurname(e.target.value)}
-        className="border rounded-lg px-4 py-2.5 text-sm w-full focus:ring-2 focus:ring-green-500"
+        className="h-12 border rounded-lg px-4 text-sm w-full focus:ring-2 focus:ring-green-500"
       />
 
       {/* DOB */}
@@ -83,7 +83,7 @@ const SignupForm: React.FC = () => {
           <select
             value={day}
             onChange={(e) => setDay(e.target.value)}
-            className="border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
+            className="h-12 border rounded-lg px-3 text-sm focus:ring-2 focus:ring-green-500"
           >
             <option value="">Day</option>
             {Array.from({ length: 31 }, (_, i) => (
@@ -97,7 +97,7 @@ const SignupForm: React.FC = () => {
           <select
             value={month}
             onChange={(e) => setMonth(e.target.value)}
-            className="border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
+            className="h-12 border rounded-lg px-3 text-sm focus:ring-2 focus:ring-green-500"
           >
             <option value="">Month</option>
             {[
@@ -124,7 +124,7 @@ const SignupForm: React.FC = () => {
           <select
             value={year}
             onChange={(e) => setYear(e.target.value)}
-            className="border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500"
+            className="h-12 border rounded-lg px-3 text-sm focus:ring-2 focus:ring-green-500"
           >
             <option value="">Year</option>
             {Array.from({ length: 100 }, (_, i) => (
@@ -141,7 +141,7 @@ const SignupForm: React.FC = () => {
         placeholder="Email Address"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border rounded-lg px-4 py-2.5 text-sm w-full focus:ring-2 focus:ring-green-500"
+        className="h-12 border rounded-lg px-4 text-sm w-full focus:ring-2 focus:ring-green-500"
       />
 
       <input
@@ -149,7 +149,7 @@ const SignupForm: React.FC = () => {
         placeholder="Create Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="border rounded-lg px-4 py-2.5 text-sm w-full focus:ring-2 focus:ring-green-500"
+        className="h-12 border rounded-lg px-4 text-sm w-full focus:ring-2 focus:ring-green-500"
       />
 
       <input
@@ -157,12 +157,12 @@ const SignupForm: React.FC = () => {
         placeholder="Confirm Password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
-        className="border rounded-lg px-4 py-2.5 text-sm w-full focus:ring-2 focus:ring-green-500"
+        className="h-12 border rounded-lg px-4 text-sm w-full focus:ring-2 focus:ring-green-500"
       />
 
       <button
         type="submit"
-        className="w-full bg-green-600 text-white py-2.5 rounded-lg font-semibold hover:bg-green-700 transition"
+        className="h-12 w-full bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition"
       >
         Sign Up
       </button>

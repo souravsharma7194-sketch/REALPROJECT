@@ -1,6 +1,6 @@
 "use client";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,15 +14,15 @@ import { useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
 
-
-
 const Navbar: React.FC = () => {
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
@@ -46,7 +46,6 @@ const Navbar: React.FC = () => {
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6">
         <div className="flex justify-between items-center h-14">
-
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold text-green-700">
@@ -65,26 +64,27 @@ const Navbar: React.FC = () => {
                 {link.name}
               </Link>
             ))}
+            {mounted && (
+              <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="text-gray-700">
+                    More
+                  </Button>
+                </DropdownMenuTrigger>
 
-            <DropdownMenu modal = {false}>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-gray-700">
-                  More
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent align="end" className="w-40">
-                <DropdownMenuItem>
-                  <Link href="/terms">Terms & Conditions</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/privacy">Privacy Policy</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/help">Help Center</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                <DropdownMenuContent align="end" className="w-40">
+                  <DropdownMenuItem asChild>
+                    <Link href="/terms">Terms & Conditions</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/privacy">Privacy Policy</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/help">Help Center</Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
 
             {!user ? (
               <>
@@ -110,10 +110,13 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Toggle */}
           <div className="md:hidden">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
-
         </div>
       </div>
 
@@ -168,20 +171,13 @@ const Navbar: React.FC = () => {
         </div>
       )}
     </nav>
-  
-
-);
+  );
 };
 
 export default Navbar;
 
-
-
-
-
-
-
-{/* 
+{
+  /* 
    
     <nav className="w-full bg-white shadow-md sticky top-0 z-0 ">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6 ">
@@ -263,4 +259,5 @@ export default Navbar;
       )}
     </nav> 
 
-   */}
+   */
+}
