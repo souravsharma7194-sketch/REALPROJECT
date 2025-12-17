@@ -2,7 +2,7 @@
 
 import { remoteConfig } from "@/firebase/firebaseConfig";
 import { fetchAndActivate, getValue } from "firebase/remote-config";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Message {
   sender: "user" | "bot";
@@ -17,14 +17,14 @@ export default function ChatbotTest() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
 
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const runner = async () => {
       try {
-       
         remoteConfig.settings.minimumFetchIntervalMillis = 0;
 
-        const activated = await fetchAndActivate(remoteConfig);
-        console.log("Remote Config activated:", activated);
+        await fetchAndActivate(remoteConfig);
 
         const isEnabled = getValue(remoteConfig, "enableChatbot").asBoolean();
         const welcome = getValue(remoteConfig, "chatbotWelcomeText").asString();
@@ -46,6 +46,10 @@ export default function ChatbotTest() {
 
     runner();
   }, []);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   if (!enabled) return null;
 
@@ -91,11 +95,14 @@ export default function ChatbotTest() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] w-80 bg-white border rounded-xl shadow-xl flex flex-col pointer-events-auto">
+    <div className="fixed bottom-4 right-4 z-[9999] w-80 max-h-[70vh] bg-white border rounded-xl shadow-xl flex flex-col pointer-events-auto">
+      
+      {/* Header */}
       <div className="bg-green-600 text-white px-4 py-3 rounded-t-xl font-semibold">
         🏡 Property Assistant
       </div>
 
+      {/* Messages */}
       <div className="flex-1 p-3 overflow-y-auto space-y-2 text-sm">
         {messages.map((m, i) => (
           <div
@@ -109,19 +116,22 @@ export default function ChatbotTest() {
             {m.text}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
+      {/* Input */}
       <div className="flex border-t p-2 gap-2">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           placeholder="Ask about properties..."
-          className="flex-1 border rounded-lg px-3 py-2 text-sm"
+          className="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
         />
-              <button
-                  type="button"
+        <button
+          type="button"
           onClick={sendMessage}
-          className="bg-green-600 text-white px-4 rounded-lg"
+          className="bg-green-600 text-white px-4 rounded-lg hover:bg-green-700"
         >
           Send
         </button>
