@@ -118,7 +118,8 @@ export default function ChatbotTest() {
           placeholder="Ask about properties..."
           className="flex-1 border rounded-lg px-3 py-2 text-sm"
         />
-        <button
+              <button
+                  type="button"
           onClick={sendMessage}
           className="bg-green-600 text-white px-4 rounded-lg"
         >
