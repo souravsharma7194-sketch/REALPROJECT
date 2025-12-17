@@ -28,8 +28,20 @@ export default function RemoteConfigDemo() {
   if (!showBanner) return null;
 
   return (
-    <div className="bg-green-600 text-white p-4 text-center">
-      🎉 Remote Config Banner
-    </div>
+   <div className="bg-green-600 text-white p-4 text-center flex flex-col sm:flex-row items-center justify-center gap-2">
+  <span className="text-lg font-semibold">
+    🏡 Special Offer!
+  </span>
+  <span>
+    Zero brokerage on selected properties — Limited time only!
+  </span>
+  <a
+    href="/properties"
+    className="bg-white text-green-600 px-4 py-1 rounded-lg font-medium hover:bg-gray-100 transition"
+  >
+    View Properties
+  </a>
+</div>
+
   );
 }
