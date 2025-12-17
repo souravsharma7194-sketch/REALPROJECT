@@ -22,7 +22,7 @@ export default function HomePage() {
         loop
         playsInline
         preload="auto"
-        className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10"
+        className="fixed inset-0 w-full h-full object-cover brightness-75 -z-10 pointer-events-none"
       >
         <source
           src="https://videos.pexels.com/video-files/7578554/7578554-hd_1920_1080_30fps.mp4"

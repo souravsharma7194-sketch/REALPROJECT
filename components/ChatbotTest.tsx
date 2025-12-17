@@ -91,7 +91,7 @@ export default function ChatbotTest() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 w-80 bg-white border rounded-xl shadow-xl flex flex-col">
+    <div className="fixed bottom-4 right-4 z-[9999] w-80 bg-white border rounded-xl shadow-xl flex flex-col pointer-events-auto">
       <div className="bg-green-600 text-white px-4 py-3 rounded-t-xl font-semibold">
         🏡 Property Assistant
       </div>
