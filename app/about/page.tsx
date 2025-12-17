@@ -1,9 +1,13 @@
 "use client";
 
+import RemoteConfigDemo from "@/components/RemoteConfigDemo";
 import React from "react";
 
 export default function AboutPage() {
   return (
+    <>
+      <RemoteConfigDemo/>
+
     <div className="w-full overflow-x-hidden">
       {/* Section 1: Hero / Intro */}
       <section className="relative h-screen bg-black text-white flex items-center justify-center">
@@ -55,6 +59,9 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-    </div>
+
+      </div>
+
+      </>
   );
 }

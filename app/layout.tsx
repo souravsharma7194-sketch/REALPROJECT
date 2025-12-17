@@ -1,9 +1,11 @@
+
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import './globals.css';
 
 
-export default function RootLayout({children} : {children: React.ReactNode}){
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    
 
 return(
 
@@ -11,7 +13,9 @@ return(
 <body>
 <Navbar/>
 
-<main className="min-h-screen">
+            <main className="min-h-screen">
+            
+                
 {children}
 </main>
 
