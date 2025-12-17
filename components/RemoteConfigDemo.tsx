@@ -36,7 +36,7 @@ export default function RemoteConfigDemo() {
     Zero brokerage on selected properties — Limited time only!
   </span>
   <a
-    href="/properties"
+    href="/explore"
     className="bg-white text-green-600 px-4 py-1 rounded-lg font-medium hover:bg-gray-100 transition"
   >
     View Properties
