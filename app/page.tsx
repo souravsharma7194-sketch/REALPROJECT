@@ -1,5 +1,6 @@
 "use client";
 
+import ChatbotTest from "@/components/ChatbotTest";
 import { Button } from "@/components/ui/button";
 import { Link } from "lucide-react";
 
@@ -8,6 +9,8 @@ export default function HomePage() {
 
 
   return (
+    <>
+      <ChatbotTest/>
       <div className="relative w-full overflow-hidden">
 
       {/* -------------------------------------- */}
@@ -139,8 +142,9 @@ export default function HomePage() {
 
         </div>
       </section>
+      </div>
 
-    </div>
+      </>
   )
 }
 

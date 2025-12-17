@@ -15,7 +15,7 @@ export default function ChatbotTest() {
 
           const value = getValue(remoteConfig, "enableChatbot").asBoolean();
           console.log("enabled chatbot",value)
-        setEnableChatbot(true);
+        setEnableChatbot(value);
       } catch (err) {
         console.log("error found", err);
       }
